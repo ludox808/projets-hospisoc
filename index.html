@@ -14,11 +14,29 @@
     header {
       background-color: #2e3c54;
       color: white;
-      padding: 1.5rem;
+      padding: 1rem;
       text-align: center;
     }
+    header img {
+      max-height: 80px;
+      margin-bottom: 0.5rem;
+    }
+    nav {
+      background-color: #005a9c;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
@@ -55,14 +73,21 @@
 </head>
 <body>
   <header>
+    <img src="https://i.postimg.cc/GpVGJWxL/Hospisoc-logo-vertical.jpg" alt="Logo Hospisoc">
     <h1>Portail des projets Hospisoc</h1>
     <p>Accès aux projets en cours d’expérimentation</p>
   </header>
+  <nav>
+    <a href="/">Accueil</a>
+    <a href="/Flisp2/">FLISP</a>
+    <a href="/Eladeb/">Eladeb</a>
+    <a href="/about/">À propos</a>
+  </nav>
   <main>
     <ul class="project-list">
       <li><a href="/Flisp2/">Projet FLISP</a><br><small>Suivi du flux de liaison interdisciplinaire social avec le patient</small></li>
-      <li><a href="/projet-2026/">Projet 2026</a><br><small>Évaluation psychosociale et coordination des soins</small></li>
-      <li>Autres projets à venir…</li>
+      <li><a href="/Eladeb/">Projet Eladeb</a><br><small>Outil d’évaluation psychosociale numérique en cours de développement</small></li>
+      <li><a href="/about/">À propos d’Hospisoc</a><br><small>Mission, objectifs et partenaires</small></li>
     </ul>
   </main>
   <footer>
