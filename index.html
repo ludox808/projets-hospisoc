@@ -1,101 +1,700 @@
+<!--
+🎯 OBJECTIF
+Améliorer au maximum la page d’accueil du portail des projets Hospisoc (fichier : index.html uniquement), sans toucher aux autres pages ni aux fichiers de style communs. Cette page doit être visuellement moderne, élégante, fluide, et professionnelle.
+
+🌐 CONTEXTE
+Cette page sert d’entrée unique vers plusieurs projets expérimentaux développés par l’ASBL Hospisoc (https://www.hospisoc.be). Elle est hébergée sur GitHub Pages (https://projets.hospisoc.be). Le style visuel doit refléter une association sérieuse et humaine, active dans le médico-social hospitalier.
+
+📁 IMAGES DISPONIBLES
+Les vignettes de projet se trouvent dans le dossier `illustrations-vignettes` à la racine :
+- FLISP : `flisp.png`
+- ELADEB : `Eladeb.png`
+- Transports-dialyse : `Transports.png`
+
+📌 À FAIRE
+
+1. 🔵 **Bannière (header)**  
+   - Remplacer le texte par :  
+     **Portail des projets Hospisoc**  
+     _Accès rapide à nos projets en cours d’expérimentation_
+   - Harmoniser la couleur avec le **logo Hospisoc**
+   - Centrer verticalement, utiliser une belle typographie
+
+2. 🟦 **Vignettes projets**
+   - Présenter les 4 projets dans des **cartes distinctes**, en grille responsive
+   - **Ajouter l’image** correspondante en haut de chaque carte
+   - Texte centré, clair, espacé
+   - Nom du projet en gras
+   - Description brève :
+     - **FLISP** : Plateforme de coordination médico-sociale  
+     - **ELADEB** : Outil d’autoévaluation psychosociale  
+     - **Transports-dialyse** : Organisation du transport pour patients en dialyse  
+     - **HospiWall** : Plateforme extranet des membres
+   - Ajouter un **bouton animé** sous chaque projet :
+     - `Découvrir` pour FLISP, ELADEB, Transports-dialyse
+     - `Accéder` pour HospiWall
+   - Lien vers :
+     - `/flisp/`
+     - `/eladeb3/`
+     - `/transports-dialyse/`
+     - `https://wall.hospisoc.be/#/wall`
+   - Chaque vignette doit avoir sa **propre identité visuelle** (couleurs, icônes, survol différent)
+
+3. 💻 **Animations et design**
+   - Ajoute des **animations fluides au survol (hover)** sur les cartes et les boutons
+   - Utilise un style **flat, moderne, professionnel**
+   - Assure la **compatibilité mobile / responsive design**
+   - Typographie homogène, cohérente, bien lisible
+
+4. 🖼️ **Supprimer les erreurs actuelles**
+   - Ne plus faire apparaître d’image cassée
+   - Supprimer les anciennes images inutiles ou non référencées
+
+5. 📎 **Pied de page**
+   - 3 liens, bien alignés et accessibles :
+     - `À propos` → `/about/index.html` (texte mis à jour)
+     - `Contact` → `https://www.hospisoc.be/contact.php`
+     - `Site web` → `https://www.hospisoc.be`
+
+🚫 À NE PAS FAIRE
+- Ne pas modifier les autres pages (ex. : `/about`, `/flisp`, etc.)
+- Ne pas toucher aux fichiers `style.css`, `tabs.js`, ni aux autres styles globaux
+
+🧠 CODEx, tu peux t’appuyer sur les dernières pratiques web (HTML5 + CSS3 + animation + responsive). Il s’agit de montrer ce que tu fais de mieux sur une seule page.
+-->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hospisoc – Portail des projets</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, sans-serif;
-    }
-    .header-logo {
-      max-height: 80px;
-    }
-    header.bg-brand {
-      background-color: #005a9c;
-    }
-    .card-hover {
-      transition: transform .3s, box-shadow .3s;
-    }
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
-    }
-    .icon-animate {
-      transition: transform .3s;
-    }
-    .card-hover:hover .icon-animate {
-      transform: rotate(10deg) scale(1.1);
-    }
-    .btn {
-      transition: background-color .3s, color .3s;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aller-retour vers la santé : les défis du transport pour les patients dialysés</title>
+    <style>
+        /* Reset and Basic Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+            background-color: #ffffff;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #f4f4f4;
+            padding: 20px 0; 
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        header .container {
+            display: flex;
+            flex-direction: column; /* Mobile first: logo, then podcast */
+            align-items: center;
+            gap: 20px; 
+        }
+
+        header .logo-container {
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            height: 240px; /* NEW: Approx 4x of an initial 60px concept */
+            width: 100%; 
+            max-width: 500px; 
+            margin-bottom: 10px; 
+        }
+
+        header .logo-container img {
+            max-height: 100%; 
+            max-width: 100%; 
+            width: auto;     
+            object-fit: contain; 
+        }
+        
+        header .podcast-container {
+            text-align: center;
+            width: 100%; 
+        }
+        header .podcast-container .podcast-intro-text {
+            font-size: 0.9em;
+            color: #444;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+        header .podcast-container .vocaroo-link-text {
+            font-size: 0.85em;
+            color: #555;
+            margin-top: 5px;
+        }
+        
+        header .podcast-container iframe {
+            vertical-align: middle; 
+            max-width: 100%; 
+        }
+
+        /* Button style (reused for download link in aproposgt) */
+        .download-link-container { /* Specific for the link in aproposgt */
+            text-align: center;
+            margin-top: 30px;
+            padding-top:20px;
+            border-top:1px solid #eee;
+        }
+        .download-link-container p:first-of-type { /* For the intro text before the button */
+             margin-bottom:10px;
+        }
+
+
+        .download-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px; 
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .download-button:active {
+            transform: translateY(0px);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .report-note { 
+            font-size: 0.85em;
+            color: #555;
+            margin-top: 8px;
+        }
+
+
+        /* Navigation */
+        nav {
+            background-color: #007bff; 
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; 
+        }
+
+        nav ul li {
+            margin: 5px 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #0056b3; 
+        }
+
+        /* Main Content */
+        main {
+            padding: 30px 0;
+        }
+
+        .tab-content {
+            display: none; 
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            background-color: #fff;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Typography and Content Elements */
+        h1, h2, h3, h4 {
+            color: #004a99; 
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 2em; margin-bottom: 20px; text-align: center; }
+        h2 { font-size: 1.6em; border-bottom: 2px solid #007bff; padding-bottom: 5px; }
+        h3 { font-size: 1.3em; }
+        h4 { font-size: 1.1em; color: #0056b3; margin-top:15px;}
+
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        ul.no-bullet {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        ul.no-bullet li {
+            margin-bottom: 5px;
+        }
+
+
+        img.content-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .illustration {
+            max-width: 500px; 
+        }
+        
+        .graph-placeholder { 
+            width: 100%;
+            max-width: 450px; 
+            height: auto;
+            display: block;
+            margin: 15px auto 25px auto; 
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+
+
+        strong {
+            color: #0056b3;
+        }
+
+        .highlight {
+            background-color: #e6f2ff;
+            padding: 15px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .constat-item {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .constat-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .constat-item h4 {
+            margin-bottom: 8px;
+        }
+
+
+        .case-study {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .case-study h3 {
+            border-bottom: 1px solid #007bff;
+            padding-bottom: 8px;
+            margin-top:0;
+        }
+
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Responsive Adjustments */
+        @media (min-width: 768px) { 
+            header .container {
+                flex-direction: row;
+                justify-content: space-between; 
+                align-items: center; 
+            }
+            header .logo-container {
+                height: 180px; 
+                width: auto; 
+                flex-basis: 40%; 
+                max-width: 350px; 
+                margin-bottom: 0;
+                justify-content: flex-start; 
+            }
+            header .podcast-container {
+                text-align: right;
+                flex-basis: 55%; 
+                max-width: 450px; 
+            }
+        }
+
+    </style>
 </head>
 <body>
-<header class="bg-brand text-white text-center py-4">
-  <img src="https://i.postimg.cc/GpVGJWxL/Hospisoc-logo-vertical.jpg" class="header-logo mb-2" alt="Hospisoc">
-  <h1 class="h3">Portail des projets Hospisoc</h1>
-  <p class="mb-0">Accès rapide à nos initiatives numériques</p>
-</header>
 
-<main class="container py-5">
-  <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-    <div class="col">
-      <div class="card h-100 text-center card-hover">
-        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=60" class="card-img-top" alt="FLISP">
-        <div class="card-body d-flex flex-column">
-          <i class="fa-solid fa-network-wired fa-3x text-primary icon-animate mb-3"></i>
-          <h5 class="card-title">FLISP</h5>
-          <p class="card-text flex-grow-1">Plateforme de coordination médico-sociale.</p>
-          <a href="flisp/" class="btn btn-outline-primary mt-auto">Découvrir</a>
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <img src="https://i.postimg.cc/t4BcJWGZ/Hospisoc-logo-horizontal.png" alt="HospiSoc Logo">
+            </div>
+            
+            <div class="podcast-container">
+                <p class="podcast-intro-text">Écoutez notre podcast pour un tour d'horizon rapide des motivations et des enjeux abordés par notre groupe de travail !</p>
+                <iframe width="300" height="60" src="https://vocaroo.com/embed/1bHDsKSI87dk?autoplay=0" frameborder="0" allow="autoplay"></iframe><br>
+                <p class="vocaroo-link-text">Podcast généré par IA. <a href="https://voca.ro/1bHDsKSI87dk" title="Enregistreur vocal Vocaroo" target="_blank" style="font-size:0.9em;">Voir sur Vocaroo >></a></p>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 text-center card-hover">
-        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=600&q=60" class="card-img-top" alt="ELADEB">
-        <div class="card-body d-flex flex-column">
-          <i class="fa-solid fa-chart-line fa-3x text-success icon-animate mb-3"></i>
-          <h5 class="card-title">ELADEB</h5>
-          <p class="card-text flex-grow-1">Outil d’autoévaluation psychosociale.</p>
-          <a href="eladeb3/" class="btn btn-outline-success mt-auto">Découvrir</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 text-center card-hover">
-        <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=600&q=60" class="card-img-top" alt="HospiWall">
-        <div class="card-body d-flex flex-column">
-          <i class="fa-solid fa-users fa-3x text-info icon-animate mb-3"></i>
-          <h5 class="card-title">HospiWall</h5>
-          <p class="card-text flex-grow-1">Plateforme extranet des membres.</p>
-          <a href="https://wall.hospisoc.be/#/wall" class="btn btn-outline-info mt-auto" target="_blank" rel="noopener">Accéder</a>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 text-center card-hover">
-        <img src="https://images.unsplash.com/photo-1504439904031-93ded62727c9?auto=format&fit=crop&w=600&q=60" class="card-img-top" alt="Transports dialyse">
-        <div class="card-body d-flex flex-column">
-          <i class="fa-solid fa-ambulance fa-3x text-danger icon-animate mb-3"></i>
-          <h5 class="card-title">Transports-dialyse</h5>
-          <p class="card-text flex-grow-1">Organisation du transport pour patients en dialyse.</p>
-          <a href="transports-dialyse/" class="btn btn-outline-danger mt-auto">Découvrir</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
+    </header>
 
-<footer class="bg-light text-center py-3">
-  <a href="about/">À propos</a> |
-  <a href="https://www.hospisoc.be/contact.php">Contact</a> |
-  <a href="https://www.hospisoc.be" target="_blank" rel="noopener">www.hospisoc.be</a>
-</footer>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#" class="nav-link active" data-target="accueil">Accueil</a></li>
+                <li><a href="#" class="nav-link" data-target="reforme">La Réforme INAMI</a></li>
+                <li><a href="#" class="nav-link" data-target="decideurs">Message aux Décideurs</a></li>
+                <li><a href="#" class="nav-link" data-target="temoignages">Témoignages du Terrain</a></li>
+                <li><a href="#" class="nav-link" data-target="aproposgt">À Propos du GT</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <main class="container">
+        <div id="accueil" class="tab-content active">
+            <h1>Aller-retour vers la santé : les défis du transport pour les patients dialysés</h1>
+            <img src="https://i.postimg.cc/pVnMSGb0/Chat-GPT-Image-18-mai-2025-17-33-24.png" alt="Illustration patient dialysé et transport" class="content-image illustration">
+            <p>Bienvenue sur ce site dédié à l'analyse des problématiques de transport pour les patients dialysés en Belgique. La dialyse est un traitement vital et récurrent, impliquant généralement trois trajets hebdomadaires vers un centre de soins. Ces déplacements, souvent longs et coûteux, représentent un fardeau logistique et financier considérable pour les patients et leurs familles.</p>
+            
+            <p>Ce projet, mené par HospiSoc et son Groupe de Travail (GT) dédié, vise à mettre en lumière les défis actuels, à évaluer l'impact des récentes réformes et à proposer des pistes d'amélioration concrètes. Explorez les différentes sections pour comprendre les enjeux, découvrir les témoignages du terrain et les messages clés adressés aux décideurs politiques.</p>
+        </div>
+
+        <div id="reforme" class="tab-content">
+            <h2>La Réforme INAMI 2025 et ses Limites</h2>
+            <img src="https://i.postimg.cc/CLLdkpfZ/Chat-GPT-Image-18-mai-2025-17-43-47.png" alt="Illustration Réforme INAMI" class="content-image illustration">
+            <p>Depuis le 1er avril 2025, une réforme de l'INAMI vise à uniformiser et automatiser le remboursement des frais de transport pour certains patients, notamment ceux sous dialyse. Cette réforme introduit des règles communes, là où chaque mutualité appliquait auparavant ses propres modalités.</p>
+
+            <h3>Principales avancées de la réforme :</h3>
+            <ul>
+                <li><strong>Tarif national unique :</strong> Remboursement à 0,36 € par kilomètre parcouru (aller-retour) entre le domicile légal du patient et le centre de soins. Applicable quel que soit le mode de transport.</li>
+                <li><strong>Automatisation du remboursement :</strong> Plus de formulaire à introduire après chaque trajet. La mutualité verse l'intervention dans les 30 jours suivant réception de la facture hospitalière.</li>
+                <li><strong>Limitation à un trajet par jour :</strong> En principe, un seul déplacement aller-retour est remboursé.</li>
+                <li><strong>Pas de plafond annuel ni de limite kilométrique :</strong> Pour autant que le choix du centre soit justifié (des exceptions existent pour les longues distances).</li>
+            </ul>
+            <p>Cette harmonisation vise à améliorer l'égalité d'accès et à simplifier la vie des patients. Elle est le résultat de constats de terrain, notamment lors d'un groupe de travail en février 2024 qui avait mis en évidence d'importantes inégalités et lourdeurs administratives.</p>
+
+            <h3>Limites persistantes malgré la réforme :</h3>
+            <p>Malgré ces avancées, des défis importants demeurent :</p>
+            <ul>
+                <li><strong>Reste à charge souvent élevé :</strong> Le remboursement de 0,36 €/km ne couvre pas toujours le coût réel du transport, surtout pour les transports spécialisés (VSL, ambulance) ou en zone rurale. Le coût peut excéder 1000€ par mois pour certains patients.</li>
+                <li><strong>Absence de tiers-payant direct généralisé :</strong> Le patient doit toujours avancer les frais, ce qui engendre un <strong>décalage de trésorerie</strong> parfois critique. Bien que des initiatives existent (MUTAS, Transportline de Partenamut), elles restent partielles et dépendantes des mutualités.</li>
+                <li><strong>Interventions complémentaires inégales :</strong> Les assurances complémentaires des mutualités varient fortement, avec des plafonds annuels (parfois seulement 250€) rapidement atteints.</li>
+                <li><strong>Aides régionales (AVIQ, CPAS) :</strong> Souvent complexes à mobiliser, avec des enquêtes sociales et des délais. L'aide de l'AVIQ (jusqu'à 1000€/an) est calculée sur base des frais globaux liés à la maladie et versée annuellement, ce qui peut ne pas soulager immédiatement les frais de transport.</li>
+                <li><strong>Patients vulnérables les plus impactés :</strong> Ceux en zones rurales, à faibles revenus, ou nécessitant un transport adapté sont particulièrement touchés par ces limites.</li>
+                <li><strong>Adresse de référence fixe :</strong> Le remboursement est calculé sur base du domicile légal, ne tenant pas compte de résidences temporaires plus proches, sauf exceptions.</li>
+            </ul>
+            <p>En conclusion, si la réforme INAMI 2025 constitue un pas en avant, elle ne résout pas intégralement le problème du "reste à charge" ni celui de l'organisation concrète du transport. Des mesures complémentaires sont nécessaires pour garantir un accès équitable et continu aux soins pour tous les patients dialysés.</p>
+        </div>
+
+        <div id="decideurs" class="tab-content">
+            <h2>Message aux Décideurs : Constats et Propositions Clés</h2>
+            <p>L'analyse des coûts de transport pour les patients dialysés, basée sur des cas concrets documentés par les assistants sociaux, révèle des problématiques structurelles et des disparités importantes. Voici les constats majeurs et les pistes d'amélioration issues du terrain, à l'attention des décideurs politiques et des instances compétentes.</p>
+
+            <h3>Constats Clés issus de l'Analyse de Terrain :</h3>
+            <div class="highlight">
+                <div class="constat-item">
+                    <h4>Impact du Type de Véhicule et Disparités entre Mutualités</h4>
+                    <p>Les coûts varient drastiquement selon le type de véhicule. De plus, pour un même trajet et type de transport, le reste à charge peut tripler selon la mutualité et son système de remboursement complémentaire, créant une inégalité d'accès aux soins.</p>
+                    <img src="https://i.postimg.cc/wMZ9NZmP/Chat-GPT-Image-18-mai-2025-19-33-07.png" alt="Graphique Impact Type Véhicule et Disparités Mutualités" class="graph-placeholder">
+                </div>
+                <div class="constat-item">
+                    <h4>Influence de la Distance</h4>
+                    <p>Les patients en zones rurales (trajets > 30 km) subissent un surcoût moyen significatif (ex: 1250€/mois) comparé aux zones urbaines (ex: 380€/mois).</p>
+                    <img src="https://i.postimg.cc/15Dz6Rvr/Chat-GPT-Image-18-mai-2025-19-35-59.png" alt="Graphique Influence de la Distance sur les Coûts" class="graph-placeholder">
+                </div>
+                <div class="constat-item">
+                    <h4>Plafonds et Reste à Charge</h4>
+                    <p>Les plafonds annuels des assurances complémentaires sont souvent bas et rapidement atteints. Le tarif INAMI de 0,36€/km ne couvre pas le coût réel des transports spécialisés, augmentant le reste à charge pour le patient.</p>
+                     <img src="https://i.postimg.cc/Gmh12bV2/Chat-GPT-Image-18-mai-2025-19-39-43.png" alt="Illustration Plafonds et Reste à Charge" class="graph-placeholder">
+                </div>
+                <div class="constat-item">
+                    <h4>Décalage de Trésorerie</h4>
+                    <p>L'obligation d'avancer les frais reste une difficulté majeure pour de nombreux patients, malgré l'automatisation du remboursement INAMI, créant des problèmes de trésorerie.</p>
+                    <img src="https://i.postimg.cc/Ss9B5R2Z/Chat-GPT-Image-18-mai-2025-19-40-51.png" alt="Illustration Décalage de Trésorerie" class="graph-placeholder">
+                </div>
+            </div>
+
+            <h3>Pistes d'Amélioration Issues du Terrain (Synthèse) :</h3>
+            <p>Basées sur les discussions lors du workshop AVIQ du 09/02/2024 et les remontées des professionnels, voici les propositions pour une meilleure intégration des frais de transport dans la chaîne de soins :</p>
+            
+            <h4>1. Harmoniser les Aides Complémentaires des Mutualités :</h4>
+            <ul>
+                <li>Mettre en place un <strong>socle inter-mutualiste commun</strong> pour le remboursement complémentaire.</li>
+                <li>Relever ou supprimer les <strong>plafonds annuels</strong> pour les transports vitaux comme la dialyse.</li>
+                <li>Garantir un niveau de remboursement équitable, quel que soit l'organisme assureur.</li>
+            </ul>
+
+            <h4>2. Mettre en Place un Système de Tiers-Payant Généralisé pour les Transports :</h4>
+            <ul>
+                <li>Permettre une <strong>facturation directe</strong> du transporteur à la mutualité/INAMI/CPAS.</li>
+                <li>Supprimer l'obligation d'<strong>avancer les frais</strong> pour le patient.</li>
+                <li><em>(Cette piste a été évoquée lors du groupe de travail AVIQ du 09/02/2024 pour une grille tarifaire unique des transports médico-sanitaires).</em></li>
+            </ul>
+
+            <h4>3. Renforcer la Collaboration Mutuelle–CPAS pour le Co-financement :</h4>
+            <ul>
+                <li>Créer un <strong>fonds social commun</strong> (ou un mécanisme similaire) dédié au transport médical lourd.</li>
+                <li>Permettre une <strong>intervention automatique</strong> du CPAS (ou via ce fonds) au-delà d'un certain seuil de reste à charge mensuel.</li>
+                <li>Initier un <strong>dialogue structuré</strong> avec la fédération des CPAS pour les publics non couverts ou en rupture de droits.</li>
+            </ul>
+
+            <h4>4. Optimiser et Coordonner l'Offre de Transport :</h4>
+            <ul>
+                <li>Favoriser le <strong>transport groupé et solidaire</strong> (navettes, covoiturage sanitaire).</li>
+                <li>Créer une <strong>plateforme régionale</strong> de coordination des tournées pour optimiser les trajets.</li>
+                <li>Soutenir les <strong>taxis sociaux et les chauffeurs bénévoles</strong> (ex: via subventions aux CPAS).</li>
+            </ul>
+
+            <h4>5. Simplifier les Démarches et Mieux Informer :</h4>
+            <ul>
+                <li>Mettre en place un <strong>guichet unique "Transport Patient"</strong> (par hôpital ou mutualité) pour centraliser les demandes et l'information.</li>
+                <li>Impliquer activement les <strong>travailleurs sociaux</strong> dans l'évaluation continue des dispositifs.</li>
+                <li><strong>Informer systématiquement les patients</strong> dès l'entrée en dialyse sur leurs droits et les aides existantes.</li>
+            </ul>
+            <p>Ces propositions visent à réduire le fardeau financier et logistique pesant sur les patients dialysés et à assurer un accès plus équitable et serein à leurs soins vitaux.</p>
+        </div>
+
+        <div id="temoignages" class="tab-content">
+            <h2>Témoignages du Terrain : Cas Concrets en Wallonie</h2>
+            <p>Les situations suivantes, issues de la pratique quotidienne des assistants sociaux en Wallonie, illustrent les défis financiers et humains liés au transport des patients dialysés.</p>
+
+            <div class="case-study">
+                <h3>Situation 1 : Placement en urgence et coûts élevés</h3>
+                <p><strong>Patient :</strong> Homme de 81 ans, placé en urgence en maison de repos à Landenne après sortie d'hospitalisation, ayant rendu son appartement.</p>
+                <p><strong>Problème :</strong> Recherche d'une place proche de la clinique pour réduire les frais de transport, mais aucune disponibilité. Sollicitation de devis auprès de quatre sociétés de transport.</p>
+                <ul class="no-bullet">
+                    <li>Cap Mobilité : 726,44 €/mois</li>
+                    <li>Care4you : 585 €/mois</li>
+                    <li>Ambulance Régionale : 858 €/mois</li>
+                    <li><strong>Assistance et Transport (choisi) : 546 €/mois</strong> (société habituelle du patient)</li>
+                </ul>
+                <p><strong>Coûts et reste à charge :</strong></p>
+                <ul>
+                    <li>Distance maison de repos - clinique : 42,6 km A/R.</li>
+                    <li>Remboursement INAMI (13 séances) : 199,29 €/mois.</li>
+                    <li>Coût mensuel du transport choisi : 546 €/mois.</li>
+                    <li><strong>Reste à charge transport : 346,71 €/mois.</strong></li>
+                    <li>Frais de maison de repos : 1 800 €/mois.</li>
+                    <li><strong>Dépenses totales mensuelles (logement + transport) : 2 146,71 €.</strong></li>
+                </ul>
+                <p><strong>Solution :</strong> Situation financièrement ingérable. Demande de réquisitoire auprès du CPAS de sa commune, qui a été acceptée. Sans cette aide, le patient n'aurait pu assumer les trajets pour son traitement vital.</p>
+            </div>
+
+            <div class="case-study">
+                <h3>Situation 2 : Autonomie réduite et transport adapté coûteux</h3>
+                <p><strong>Patient :</strong> Homme de 78 ans, habitant Javingue, nécessitant une chaise roulante dans le véhicule et pour se déplacer.</p>
+                <p><strong>Problème :</strong> Domicile plus proche de l'hôpital de Dinant (50,4 km A/R), mais service d'auto-dialyse et patient pas assez autonome (déplacement en chaise, cognitivement incapable d'effectuer les tâches, besoin d'un médecin pendant les séances). Doit se rendre à Namur (109,8 km A/R, double distance).</p>
+                <p><strong>Remboursement et Devis :</strong></p>
+                <ul>
+                    <li>Remboursement INAMI (13 séances) : 513,89 €/mois.</li>
+                    <li>Devis Cap Mobilité (transport adapté) : 1 981,20 €/mois. Ils ont indiqué ne pas pouvoir assurer le transport vu la longueur du trajet.</li>
+                    <li>Devis Assistance et Transport (véhicule simple) : 1 274 €/mois. Patient incapable de réaliser les transferts.</li>
+                </ul>
+                <p><strong>Conclusion et reste à charge :</strong> Le patient a besoin d'un véhicule adapté. Avec la société Cap Mobilité (seule option adaptée mentionnée avec un prix) :</p>
+                <ul>
+                    <li>Coût transport adapté : 1 981,20 €/mois.</li>
+                    <li>Remboursement INAMI : 513,89 €/mois.</li>
+                    <li><strong>Reste à charge patient : 1 497,31 €/mois.</strong></li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>Situation 3 : Problèmes de disponibilité et choix limité</h3>
+                <p><strong>Patient :</strong> Homme de 80 ans, résidant à Gembloux, problèmes de mobilité, besoin d'une chaise roulante.</p>
+                <p><strong>Problème :</strong> Cap Mobilité (société la moins chère) indisponible pour les retours. Obligation de se tourner vers Ambulance Régionale (véhicules plus adaptés).</p>
+                <p><strong>Coûts et reste à charge :</strong></p>
+                <ul>
+                    <li>Coût Ambulance Régionale (36 km A/R, 13 séances) : 772,20 €/mois (59,40 €/jour).</li>
+                    <li>Remboursement INAMI (0,36 €/km) : 168,48 €/mois (12,96 €/jour).</li>
+                    <li><strong>Reste à charge patient : 603,72 €/mois.</strong></li>
+                </ul>
+            </div>
+            
+            <div class="case-study">
+                <h3>Situation 4 : Transport pour complications médicales</h3>
+                <p><strong>Patiente :</strong> Jeune, habitant Dinant, autonome, en centre d'auto-dialyse à Dinant.</p>
+                <p><strong>Problème :</strong> En cas de problème médical, doit se rendre à Sainte-Elisabeth (probablement Namur, son centre de rattachement faute d'hémodialyse à Dinant), car il n'y a pas de centre d'hémodialyse à Dinant. Nécessité de devis pour ce trajet potentiel.</p>
+                <p><strong>Devis (trajet Dinant - Sainte-Elisabeth, 64,6 km A/R) :</strong></p>
+                <ul class="no-bullet">
+                    <li>Assistance et Transport : 767 €/mois (59 €/jour).</li>
+                    <li>Care4you : 780 €/mois (60 €/jour).</li>
+                </ul>
+                <p><strong>Coûts et reste à charge (pour ce trajet occasionnel si besoin) :</strong></p>
+                <ul>
+                    <li>Remboursement INAMI : 302,32 €/mois (23,56 €/jour).</li>
+                    <li><strong>Reste à charge (avec Assistance et Transport) : 464,68 €/mois.</strong></li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>Situation 5 : Mme L. - Pression financière et refus de solutions</h3>
+                <p><strong>Patiente :</strong> Mme L., née en 1933, suivie au site Constantinople, 3 séances/semaine. Vit avec sa fille, copropriétaires de leur maison.</p>
+                <p><strong>Problématique principale :</strong> La patiente et sa fille ont exprimé à plusieurs reprises le souhait d'arrêter les dialyses pour raisons financières (coût élevé du transport). Le néphrologue préconise un transport couché vu les douleurs et la difficulté de mobilisation, mais la fille refuse catégoriquement (coût et infrastructure de la maison).</p>
+                <h4>Évolution des transports et coûts :</h4>
+                <ul>
+                    <li>Initialement : Dam Ambulances : 209 €/jour.</li>
+                    <li>Depuis fév. 2025 : MDS Ambulance (assis avec chaise roulante) : 100 €/jour.</li>
+                    <li>Prévu dès 01/04/2025 : Comfort Mobility (assis) : 70 € (2x/sem.) et 101 € (1x/sem.) - coût mensuel moyen ~1065€.</li>
+                </ul>
+                <h4>Démarches sociales entreprises :</h4>
+                <ul>
+                    <li><strong>Dossier AVIQ :</strong> En ordre. Intervention maximale de 746 €/an. Reçu 130 € pour 2022-2023 (quote-part de 10% initialement demandée a été supprimée après interpellation).</li>
+                    <li><strong>Dossier Mutualité (chrétienne) :</strong> En cours. Tentatives pour débloquer : forfait maladie grave, forfait soins palliatifs (1er reçu : 827,99€), fonds social (2500€ si accepté), etc. Remboursement transport AO : 0,36 €/km.</li>
+                    <li><strong>Dossier CPAS :</strong> Fille refuse d'introduire une demande (peur de mettre la maison en gage).</li>
+                    <li><strong>Convention hôpital :</strong> 117 €/mois (pour 13 séances, trajet 18 km A/R domicile-Constantinople).</li>
+                </ul>
+                <h4>Refus d'autres aides :</h4>
+                <p>Orientation vers maison de repos, aides à domicile (sauf infirmière), réunion pluridisciplinaire : tout a été refusé par la fille, se disant trop épuisée.</p>
+                <h4>Calculs du reste à charge mensuel (13 séances) :</h4>
+                <p>Le document fournit des chiffres pour "interv ass obl 84,24 euros, interv ass compl 171 euros". Ces montants, ajoutés à l'intervention hôpital (117€), donnent une déduction totale de 372,24€.</p>
+                <ul>
+                    <li><strong>Transport assis (base 100€/jour soit 1300€/mois) :</strong>
+                        Reste à charge = 1300 € - 372,24 € = <strong>927,76 €</strong>.</li>
+                    <li><strong>Transport couché (MDS Ambulance à 200€/jour soit 2600€/mois) :</strong>
+                        Reste à charge = 2600 € - 372,24 € = <strong>2227,76 €</strong>.</li>
+                </ul>
+                 <p><strong>Conclusion :</strong> Face au refus du transport couché par la fille, la patiente continue d'être véhiculée en position assise, malgré les recommandations médicales. La situation financière reste extrêmement tendue.</p>
+            </div>
+        </div>
+
+        <div id="aproposgt" class="tab-content">
+            <h2>À Propos du Groupe de Travail (GT) HospiSoc</h2>
+            <p>Cet espace est dédié à la présentation du Groupe de Travail (GT) HospiSoc axé sur la problématique du transport des patients dialysés, son contexte, ses acteurs et ses travaux.</p>
+
+            <h3>HospiSoc : Un Réseau Engagé</h3>
+            <p><strong>HospiSoc est l’association francophone des travailleurs sociaux hospitaliers, active en Wallonie et à Bruxelles.</strong><br>
+            Elle réunit des professionnels des services sociaux hospitaliers autour d’une mission commune : améliorer la qualité de la prise en charge sociale des patients.</p>
+            <p>HospiSoc s’attache à :</p>
+            <ul>
+                <li>Identifier les défis concrets rencontrés sur le terrain</li>
+                <li>Mutualiser les expertises et les bonnes pratiques</li>
+                <li>Formuler des propositions constructives pour optimiser les parcours de soins et de vie des patients</li>
+            </ul>
+
+            <h3>Contexte et Objectifs du Groupe de Travail "Transport Dialyse" :</h3>
+            <p>Le transport des patients dialysés a été identifié comme un enjeu crucial par les membres d'HospiSoc. Les coûts élevés, la complexité administrative et les disparités d'accès aux aides pèsent lourdement sur les patients et leurs familles. Le GT "Transport Dialyse" a été constitué pour :</p>
+            <ul>
+                <li>Analyser en profondeur les coûts et les obstacles liés au transport.</li>
+                <li>Recueillir les témoignages et les expériences des professionnels de terrain et des patients.</li>
+                <li>Évaluer l'impact des dispositifs d'aide existants et des réformes.</li>
+                <li>Élaborer des constats clairs et des propositions d'amélioration concrètes.</li>
+                <li>Sensibiliser les instances compétentes (AVIQ, INAMI, cabinets ministériels) à ces problématiques.</li>
+            </ul>
+
+            <h3>Le Workshop du 9 Février 2024 : Un Moment Clé</h3>
+            <p>Un workshop intitulé "Transports et soins. Accessibilité des patients dialysés. Hospisoc" s'est tenu le 9 février 2024, réunissant des représentants de nombreux hôpitaux wallons et des acteurs de l'AVIQ.</p>
+            <p>Mme Libertiaux (conseillère de la Ministre de la Santé), excusée, a été représentée par <strong>Mr Mont Laurent</strong> (Directeur des soins ambulatoires de l'AVIQ) et <strong>Mr Couwet</strong> (Inspecteur médico-social Aviq), qui se sont faits porte-paroles pour relayer les informations et demandes.</p>
+            <p>Lors de ce GT, il a été souligné que l'AVIQ travaille sur une réforme des TMS (transport médico-sanitaire). Mr Mont a évoqué la préférence pour le VSL ou le taxi, moins chers que le TMS, mais les participants ont insisté sur le fait que <strong>l'état médical du patient prime</strong>, certains nécessitant impérativement un transport adapté (élévateur, brancard). Malgré des coûts négociés, le <strong>reste à charge pour le patient demeure souvent très élevé</strong>.</p>
+            <p>La question du transport groupé pour réduire les coûts a été soulevée, bien que son application pratique soit jugée rare par les participants.</p>
+            
+            <h4>Intervention de l'AVIQ sur l'Aide Financière :</h4>
+            <p>Mme Chantry Elodie et Mme Gogniat Carine (AVIQ - Direction de première ligne d'aides et soins à domicile) ont clarifié le rôle de l'AVIQ :</p>
+            <ul>
+                <li>L'AVIQ n'intervient pas directement sur les frais de santé ou de transport mais les prend en compte dans le calcul de l'aide financière globale (jusqu'à <strong>1000€/an</strong>).</li>
+                <li>Conditions minimales : patient dialysé (hémodialyse ou transplanté) avec numéro de registre national. Factures à joindre si non transmises par l'hôpital. Introduction après un an de dialyse.</li>
+                <li>L'AVIQ se veut "souple" et peut être sollicitée pour des situations sociales complexes (analyse au cas par cas).</li>
+                <li>Documents à fournir : revenus du ménage, extrait de rôle, justificatifs d'allocations (AI, APA), informations sur le logement, assurance hospitalisation, date de début de dialyse.</li>
+            </ul>
+            
+            <h4>Questionnement Éthique (issu du PV du workshop) :</h4>
+            <p>Un débat a eu lieu concernant le versement de l'aide financière de l'AVIQ sur le compte des centres hospitaliers plutôt que directement au patient. L'AVIQ justifie cela par le fait que l'aide est destinée à supporter les frais médicaux liés à l'IRC. Il a été proposé de revoir les dossiers de demande pour plus de transparence, en précisant que l'hôpital pourrait récupérer l'aide en cas de contentieux et que le patient s'engage à informer l'AVIQ de tout changement de situation, le rendant ainsi acteur de son dossier.</p>
+
+            <h3>Conclusions et Perspectives du Groupe de Travail :</h3>
+            <p>Les intervenants de l'AVIQ présents au workshop ont reconnu ne pas avoir eu pleine conscience de la gravité des problématiques soulevées. Sur demande d'Hospisoc (Mme Sencie), il a été convenu d'<strong>intégrer les travailleurs de terrain dans les futurs groupes de travail</strong> de Mr Mont pour une vision plus réaliste des coûts.</p>
+            <p>Le GT "Transport Dialyse" d'HospiSoc entend poursuivre ses travaux pour :</p>
+            <ul>
+                <li>Affiner le relevé des problématiques de transport.</li>
+                <li>Rédiger un constat détaillé qui sera transmis à la conseillère de la Ministre.</li>
+                <li>Promouvoir la participation d'un patient partenaire dans les réflexions futures.</li>
+            </ul>
+            <p>La méthodologie du GT repose sur la collecte et l'analyse de données quantitatives (via un tableau Excel standardisé documentant des cas réels) et qualitatives (discussions en atelier, retours d'expérience des professionnels).</p>
+            
+            <div class="download-link-container">
+                 <p>Pour une analyse approfondie des travaux du groupe et des données collectées :</p>
+                <a href="https://drive.google.com/file/d/1Jyq3dRSdSMSzG9MLCfbQ0GWxecwwC_s1/view?usp=sharing" target="_blank" class="download-button" rel="noopener noreferrer">
+                    Télécharger le Rapport de Recherche (PDF)
+                </a>
+                <p class="report-note">Rapport effectué par le groupe de travail avec l'appui de l'IA.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 HospiSoc - Les défis du transport pour les patients dialysés. Tous droits réservés.</p>
+            <p>Site réalisé à des fins informatives et de plaidoyer par le Groupe de Travail "Transport Dialyse".</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Show accueil by default
+            document.getElementById('accueil').classList.add('active');
+            document.querySelector('.nav-link[data-target="accueil"]').classList.add('active');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+
+                    // Deactivate all tabs and links
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+
+                    // Activate clicked tab and link
+                    document.getElementById(targetId).classList.add('active');
+                    this.classList.add('active');
+                    
+                    // Scroll to top of main content for better UX on tab switch
+                    document.querySelector('main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
