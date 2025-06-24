@@ -7,7 +7,7 @@ This repository hosts the static website available at [projets.hospisoc.be](http
 - **FLISP** (`/Flisp2/`): prototype for better social and medical information flow between care professionals.
 - **Transports Dialyse** (`/transports-dialyse/`): site exploring transport organisation for dialysis patients.
 - **Eladeb**: external psychosocial evaluation tool linked from the main page.
-- An "About Hospisoc" section is planned under `/about/`.
+- An "About Hospisoc" section is available under `/about/`.
 
 ## Building and deploying
 
