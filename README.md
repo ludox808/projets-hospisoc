@@ -11,13 +11,34 @@ This repository hosts the static website available at [projets.hospisoc.be](http
 
 ## Building and deploying
 
-The site is fully static—no build step is required. Update the HTML files and push the changes to the main branch. GitHub Pages will automatically deploy the latest revision.
+Most of the pages in this repository are plain HTML that you can edit directly.
+The **FLISP** project is different: it is a small React application built in a
+separate repository. You need to compile that React app before copying the
+result here.
 
-To preview locally, open `index.html` in your browser or run a small HTTP server, for example:
+Steps to build the React app:
+
+1. In the `flisp-app` source folder run `npm install` once to install
+   dependencies.
+2. Execute `npm run build`. A `build/` directory is created.
+3. Copy the contents of this `build/` directory into the `Flisp2/` folder of
+   this repository, overwriting the old files.
+
+After copying the compiled output, commit and push the changes to the `main`
+branch. GitHub Pages will then publish the new version.
+
+To preview the site locally, open `index.html` or run a minimal HTTP server:
 
 ```bash
 python3 -m http.server
 ```
+
+## Static versus generated content
+
+* `index.html`, `eladeb3/` and `transports-dialyse/` are maintained as plain
+  static HTML files.
+* `Flisp2/` is generated from a separate React project and should contain only
+  the compiled build output.
 
 ## Custom domain
 
